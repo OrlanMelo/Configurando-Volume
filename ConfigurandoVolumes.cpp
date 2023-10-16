@@ -30,12 +30,12 @@ public:
 	{
 		/*
 		* 
-		* eRender e eCapture - Apenas os dispositivos de som que recebem os áudios através de aplicativos e outros recursos.
-		* eMultimedia - Áudios provenientes de músicas, filmes, narrações e gravações.
+		* eRender e eCapture - Apenas os dispositivos de som que recebem os Ã¡udios atravÃ©s de aplicativos e outros recursos.
+		* eMultimedia - Ãudios provenientes de mÃºsicas, filmes, narraÃ§Ãµes e gravaÃ§Ãµes.
 		* 
 		* Outros sinalizadores e seus significados:
 		* 
-		* ERole: eCommunications - Comunicação por voz.
+		* ERole: eCommunications - ComunicaÃ§Ã£o por voz.
 		* ERole: eConsole - Jogos, sons do sistema e comandos por voz.
 		*/
 		Enumerador->GetDefaultAudioEndpoint(eRender, eMultimedia, (IMMDevice**)&Dispositivo);
@@ -53,12 +53,12 @@ public:
 		Audio->GetMasterVolumeLevelScalar(&Nivel);
 
 		//Formata a string para o formato correto, sem incluir o valor de float completo.
-		//Esta formatação remove os seguintes caracteres ( 0. ).
+		//Esta formataÃ§Ã£o remove os seguintes caracteres ( 0. ).
 		string formatar = to_string(Nivel);
 		formatar.erase(remove(formatar.begin(), formatar.end(), '0'),formatar.end());
 		formatar.erase(remove(formatar.begin(), formatar.end(), '.'), formatar.end());
 
-		cout << "Nível atual do volume: " << formatar << '\n';
+		cout << "NÃ­vel atual do volume: " << formatar << '\n';
 	}
 
 	void Silenciar(BOOL Mutar)
@@ -71,9 +71,13 @@ public:
 		BOOL Silenciado;
 		Audio->GetMute(&Silenciado);
 		if (Silenciado == FALSE)
-			cout << "Não silenciado\n";
+		{
+			cout << "NÃ£o silenciado\n";
+		}
 		else
+		{
 			cout << "Silenciado";
+		}
 	}
 
 }Funcoes;
@@ -81,12 +85,12 @@ public:
 int main()
 {
 
-	cout << "O assistente está executando operações no sistema de áudio...";
+	cout << "O assistente estÃ¡ executando operaÃ§Ãµes no sistema de Ã¡udio...";
 
 	Funcoes.InicializarInstancia();
 	Funcoes.InicializarCliente();
-	Funcoes.ConfiguracoesDeVolume(0.50);//Irá manter no nível 50 de volume.
-	Funcoes.ConfiguracoesDeVolume(0.99);//Volume máximo.
+	Funcoes.ConfiguracoesDeVolume(0.50);//IrÃ¡ manter no nÃ­vel 50 de volume.
+	Funcoes.ConfiguracoesDeVolume(0.99);//Volume mÃ¡ximo.
 	Funcoes.Silenciar(TRUE);
 	Funcoes.VerificarSilenciado();
 	Funcoes.Silenciar(FALSE);
